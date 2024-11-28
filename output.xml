@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1 (Python 3.12.2 on win32)" generated="2024-11-27T23:57:04.516865" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Store" source="c:\Iterasys\PetStoreRobbot140\__tests__\test_store.robot">
+<test id="s1-t1" name="Delete pedido" line="47">
+<kw name="DELETE" owner="RequestsLibrary">
+<msg time="2024-11-27T23:57:05.503258" level="INFO">DELETE Request : url=https://petstore.swagger.io/v2/store/order/102 
+ path_url=/v2/store/order/102 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2024-11-27T23:57:05.503258" level="INFO">DELETE Response : url=https://petstore.swagger.io/v2/store/order/102 
+ status=200, reason=OK 
+ headers={'Date': 'Thu, 28 Nov 2024 02:57:04 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"code":200,"type":"unknown","message":"102"} 
+ </msg>
+<msg time="2024-11-27T23:57:05.503258" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${{$url + '/' + $id}}</arg>
+<doc>Sends a DELETE request.</doc>
+<status status="PASS" start="2024-11-27T23:57:04.887033" elapsed="0.616225"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-11-27T23:57:05.518822" level="INFO">${response_body} = {'code': 200, 'type': 'unknown', 'message': '102'}</msg>
+<var>${response_body}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-11-27T23:57:05.517949" elapsed="0.000873"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response_body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-11-27T23:57:05.518822" elapsed="0.000000"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2024-11-27T23:57:05.518822" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[code]</arg>
+<arg>${{int(200)}}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-11-27T23:57:05.518822" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[type]</arg>
+<arg>unknown</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-11-27T23:57:05.518822" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[message]</arg>
+<arg>${id}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-11-27T23:57:05.518822" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-27T23:57:04.887033" elapsed="0.631789"/>
+</test>
+<status status="PASS" start="2024-11-27T23:57:04.522858" elapsed="1.010971"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test Store">Test Store</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
